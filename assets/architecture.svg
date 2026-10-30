@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 544" role="img" aria-labelledby="title desc">
+  <title id="title">OptiTalent high-level architecture</title>
+  <desc id="desc">Four layers: the client workspace, an edge layer with one public ingress and a gateway, a business layer, and a data layer.</desc>
+  <style>
+    :root { --paper: #fffefa; --group: #faf9f5; --ink: #1f2824; --muted: #64706a; --line: #d9d8d0; --edge: #8b948e; --forest: #263f34; --tint: #eef1ea; }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #202a25; --group: #1b231f; --ink: #f7f3ea; --muted: #abb7b0; --line: #36423c; --edge: #7f8c85; --forest: #a8bf91; --tint: #27352d; }
+    }
+    text { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: var(--ink); }
+    .group { fill: var(--group); stroke: var(--line); }
+    .box { fill: var(--paper); stroke: var(--line); stroke-width: 1.25; }
+    .key { fill: var(--tint); stroke: var(--forest); stroke-width: 1.5; }
+    .name { font-size: 20px; font-weight: 600; text-anchor: middle; }
+    .head { font-size: 13px; font-weight: 600; letter-spacing: .12em; fill: var(--muted); }
+    .wire { fill: none; stroke: var(--edge); stroke-width: 1.25; }
+    .arrow { fill: var(--edge); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="arrow" d="M0 0 10 5 0 10z"/>
+    </marker>
+  </defs>
+
+  <!-- Layer order: groups, wires, boxes -->
+  <rect class="group" x="20" y="20" width="960" height="96" rx="16"/>
+  <rect class="group" x="20" y="156" width="960" height="96" rx="16"/>
+  <rect class="group" x="20" y="292" width="960" height="96" rx="16"/>
+  <rect class="group" x="20" y="428" width="960" height="96" rx="16"/>
+
+  <g class="wire">
+    <path d="M395 98V174" marker-end="url(#a)"/>
+    <path d="M570 204H606" marker-end="url(#a)"/>
+    <path d="M781 234V310" marker-end="url(#a)"/>
+    <path d="M606 340H570" marker-end="url(#a)"/>
+    <path d="M781 370V408H395V446" marker-end="url(#a)"/>
+    <path d="M781 408V446" marker-end="url(#a)"/>
+  </g>
+
+  <text class="head" x="44" y="73">CLIENT</text>
+  <rect class="box" x="220" y="38" width="350" height="60" rx="12"/>
+  <text class="name" x="395" y="75">Workspace</text>
+
+  <text class="head" x="44" y="209">EDGE</text>
+  <rect class="box" x="220" y="174" width="350" height="60" rx="12"/>
+  <text class="name" x="395" y="211">Ingress</text>
+  <rect class="key" x="606" y="174" width="350" height="60" rx="12"/>
+  <text class="name" x="781" y="211">Gateway</text>
+
+  <text class="head" x="44" y="345">BUSINESS</text>
+  <rect class="box" x="220" y="310" width="350" height="60" rx="12"/>
+  <text class="name" x="395" y="347">Document processing</text>
+  <rect class="key" x="606" y="310" width="350" height="60" rx="12"/>
+  <text class="name" x="781" y="347">Business services</text>
+
+  <text class="head" x="44" y="481">DATA</text>
+  <rect class="box" x="220" y="446" width="350" height="60" rx="12"/>
+  <text class="name" x="395" y="483">Database</text>
+  <rect class="box" x="606" y="446" width="350" height="60" rx="12"/>
+  <text class="name" x="781" y="483">Object storage</text>
+</svg>

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peler Yuan · Contributions</title>
+  <meta name="description" content="A timeline of Peler Yuan's engineering contributions.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23263f34'/%3E%3Cpath d='M16 8l8 8-8 8-8-8z' fill='%23f4f2ec'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --canvas: #f4f2ec;
+      --paper: #fffefa;
+      --ink: #1f2824;
+      --muted: #64706a;
+      --forest: #263f34;
+      --copper: #a66c36;
+      --hairline: rgba(55, 68, 61, 0.14);
+      --glass: rgba(244, 242, 236, 0.72);
+      --sans: Geist, "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --serif: Lora, Georgia, "Times New Roman", serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --canvas: #151b18;
+        --paper: #202a25;
+        --ink: #f7f3ea;
+        --muted: #abb7b0;
+        --forest: #a8bf91;
+        --copper: #db9b5c;
+        --hairline: rgba(232, 239, 233, 0.14);
+        --glass: rgba(21, 27, 24, 0.72);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font: 400 1.0625rem/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+    .wrap { width: min(70rem, 100%); margin: 0 auto; padding: 0 2rem; }
+
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .bar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 4rem;
+    }
+
+    .name { font-weight: 500; letter-spacing: -0.01em; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+
+    .filters button {
+      padding: 0.3rem 0.75rem;
+      border: 0;
+      border-radius: 99px;
+      background: none;
+      color: var(--muted);
+      font: 500 0.875rem var(--sans);
+      cursor: pointer;
+    }
+
+    .filters button[aria-pressed="true"] { background: var(--forest); color: var(--canvas); }
+
+    .hero { padding: clamp(5rem, 13vw, 10rem) 0 clamp(4rem, 9vw, 7rem); }
+
+    h1 {
+      margin: 0;
+      font: 400 clamp(3.25rem, 11vw, 7.5rem)/1 var(--serif);
+      letter-spacing: -0.03em;
+    }
+
+    .intro { margin: 1.75rem 0 0; color: var(--muted); font-size: clamp(1.125rem, 2vw, 1.375rem); }
+
+    .year {
+      margin: 0 0 2.5rem;
+      font: 400 1.5rem/1 var(--serif);
+      color: var(--muted);
+    }
+
+    .year:not(:first-child) { margin-top: 5rem; }
+
+    .entry {
+      position: relative;
+      display: grid;
+      grid-template-columns: 9rem minmax(0, 1fr);
+      padding-bottom: 4rem;
+    }
+
+    .entry::before {
+      content: "";
+      position: absolute;
+      top: 0.5rem;
+      bottom: -0.5rem;
+      left: 9rem;
+      width: 1px;
+      background: var(--hairline);
+    }
+
+    .entry:last-child::before { bottom: 0; }
+
+    .entry::after {
+      content: "";
+      position: absolute;
+      top: 0.45rem;
+      left: calc(9rem - 0.25rem);
+      width: 0.5625rem;
+      height: 0.5625rem;
+      border-radius: 50%;
+      background: var(--forest);
+    }
+
+    .entry.featured::after {
+      left: calc(9rem - 0.3125rem);
+      width: 0.6875rem;
+      height: 0.6875rem;
+      border-radius: 1px;
+      background: var(--copper);
+      transform: rotate(45deg);
+    }
+
+    time { color: var(--muted); font-size: 0.9375rem; }
+
+    .body { min-width: 0; padding-left: 2.5rem; }
+
+    .meta {
+      margin: 0 0 0.875rem;
+      color: var(--muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .featured .meta span:last-child { color: var(--copper); }
+
+    h2 {
+      margin: 0;
+      font: 400 1.625rem/1.25 var(--serif);
+      letter-spacing: -0.015em;
+    }
+
+    .featured h2 { font-size: clamp(2rem, 4.5vw, 3.125rem); line-height: 1.12; letter-spacing: -0.025em; }
+
+    .summary { max-width: 42rem; margin: 1.25rem 0 0; font-size: 1.1875rem; }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 2.5rem;
+      margin-top: 2.75rem;
+    }
+
+    h3 { margin: 0 0 0.5rem; font-size: 1rem; font-weight: 600; }
+
+    .sections p { margin: 0; color: var(--muted); }
+
+    figure { margin: 3rem 0 0; }
+
+    .featured figure { position: relative; z-index: 1; margin-left: -11.5rem; }
+
+    .frame {
+      display: block;
+      padding: clamp(1rem, 3vw, 2rem);
+      background: var(--paper);
+      border: 1px solid var(--hairline);
+      border-radius: 1.35rem;
+      overflow-x: auto;
+    }
+
+    .frame img { display: block; width: 100%; min-width: 32rem; height: auto; }
+
+    figcaption { margin-top: 0.875rem; color: var(--muted); font-size: 0.9375rem; }
+
+    .featured figcaption { padding-left: 11.5rem; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 2rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9375rem; }
+
+    .links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.5rem; font-size: 0.9375rem; }
+
+    footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--hairline); color: var(--muted); font-size: 0.875rem; }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 0 1rem; }
+      .entry { display: block; padding-left: 1.5rem; }
+      .entry::before { left: 0.25rem; }
+      .entry::after { left: 0; }
+      .entry.featured::after { left: -0.0625rem; }
+      time { display: block; margin-bottom: 0.875rem; }
+      .body { padding-left: 0; }
+      .featured figure { margin-left: 0; }
+      .featured figcaption { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="wrap">
+      <span class="name" id="name"></span>
+      <div class="filters" id="filters" role="group" aria-label="Filter by type"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Contributions</h1>
+      <p class="intro" id="intro"></p>
+    </section>
+    <section id="timeline" aria-label="Timeline"></section>
+  </main>
+
+  <footer>
+    <div class="wrap" id="footer"></div>
+  </footer>
+
+  <script src="contributions.js"></script>
+  <script>
+    const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+      "August", "September", "October", "November", "December"];
+
+    const el = (tag, className, text) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    };
+
+    const formatDate = (date) => {
+      const [, month, day] = date.split("-");
+      const name = MONTHS[Number(month) - 1];
+      return day ? `${name} ${Number(day)}` : name;
+    };
+
+    const renderEntry = (item) => {
+      const entry = el("article", item.featured ? "entry featured" : "entry");
+      const time = el("time", "", formatDate(item.date));
+      time.dateTime = item.date;
+
+      const body = el("div", "body");
+      const meta = el("p", "meta");
+      meta.append(el("span", "", `${item.project} · `), el("span", "", item.type));
+      body.append(meta, el("h2", "", item.title));
+
+      if (item.summary) body.append(el("p", "summary", item.summary));
+
+      if (item.sections) {
+        const sections = el("div", "sections");
+        for (const { heading, text } of item.sections) {
+          const section = el("div");
+          section.append(el("h3", "", heading), el("p", "", text));
+          sections.append(section);
+        }
+        body.append(sections);
+      }
+
+      if (item.figure) {
+        const figure = el("figure");
+        const frame = el("div", "frame");
+        const image = el("img");
+        image.src = item.figure.src;
+        image.alt = item.figure.alt;
+        frame.append(image);
+        figure.append(frame);
+        if (item.figure.caption) figure.append(el("figcaption", "", item.figure.caption));
+        body.append(figure);
+      }
+
+      if (item.stack) {
+        const tags = el("ul", "tags");
+        for (const name of item.stack) tags.append(el("li", "", name));
+        body.append(tags);
+      }
+
+      if (item.links) {
+        const links = el("div", "links");
+        for (const { label, url } of item.links) {
+          const link = el("a", "", label);
+          link.href = url;
+          links.append(link);
+        }
+        body.append(links);
+      }
+
+      entry.append(time, body);
+      return entry;
+    };
+
+    const renderTimeline = (activeType) => {
+      const timeline = document.getElementById("timeline");
+      timeline.replaceChildren();
+      let year;
+      const sorted = [...contributions]
+        .filter((item) => !activeType || item.type === activeType)
+        .sort((a, b) => b.date.localeCompare(a.date));
+      for (const item of sorted) {
+        const itemYear = item.date.slice(0, 4);
+        if (itemYear !== year) {
+          year = itemYear;
+          timeline.append(el("p", "year", year));
+        }
+        timeline.append(renderEntry(item));
+      }
+    };
+
+    const renderFilters = () => {
+      const types = [...new Set(contributions.map((item) => item.type))];
+      if (types.length < 2) return;
+      const filters = document.getElementById("filters");
+      const buttons = [undefined, ...types].map((type) => {
+        const button = el("button", "", type ?? "All");
+        button.type = "button";
+        button.setAttribute("aria-pressed", String(!type));
+        button.addEventListener("click", () => {
+          for (const other of buttons) other.setAttribute("aria-pressed", String(other === button));
+          renderTimeline(type);
+        });
+        return button;
+      });
+      filters.append(...buttons);
+    };
+
+    document.getElementById("name").textContent = site.name;
+    document.getElementById("intro").textContent = site.intro;
+    document.getElementById("footer").textContent = `© ${new Date().getFullYear()} ${site.name}`;
+    renderFilters();
+    renderTimeline();
+  </script>
+</body>
+</html>
